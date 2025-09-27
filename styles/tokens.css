@@ -1,0 +1,101 @@
+/* Google font imports */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* ---------- Colors ---------- */
+:root {
+  /* Brand Palette */
+  --color-primary: #4a90e2;
+  --color-primary-dark: #357ab8;
+  --color-primary-light: #d9eaff;
+
+  --color-secondary: #f5a623;
+  --color-secondary-dark: #d48806;
+  --color-secondary-light: #ffe8cc;
+
+  /* Grayscale */
+  --color-black: #000000;
+  --color-gray-900: #1a1a1a;
+  --color-gray-700: #4d4d4d;
+  --color-gray-500: #808080;
+  --color-gray-300: #cccccc;
+  --color-gray-100: #f5f5f5;
+  --color-white: #ffffff;
+
+  /* Feedback */
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+  --color-info: #17a2b8;
+
+  /* Text & Background */
+  --text-color: black;
+  --text-color-light: white;
+  --background-color: var(--color-white);
+  --background-alt: var(--color-gray-100);
+}
+
+/* ---------- Spacing ---------- */
+:root {
+  --space-xxs: 0.25rem;   /* 4px */
+  --space-xs: 0.5rem;     /* 8px */
+  --space-sm: 0.75rem;    /* 12px */
+  --space-md: 1rem;       /* 16px */
+  --space-lg: 1.5rem;     /* 24px */
+  --space-xl: 2rem;       /* 32px */
+  --space-xxl: 3rem;      /* 48px */
+}
+
+/* ---------- Typography ---------- */
+:root {
+  --font-family-sans: "Roboto", sans-serif;
+  --font-family-serif: 'Georgia', 'Times New Roman', serif;
+  --font-family-mono: 'Courier New', monospace;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-md: 1rem;      /* 16px */
+  --font-size-lg: 1.25rem;   /* 20px */
+  --font-size-xl: 1.5rem;    /* 24px */
+  --font-size-xxl: 2rem;     /* 32px */
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.75;
+}
+
+/* ---------- Borders & Radius ---------- */
+:root {
+  --border-width-thin: 1px;
+  --border-width-thick: 2px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-round: 50%;
+}
+
+/* ---------- Shadows ---------- */
+:root {
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Breakpoints ---------- */
+:root {
+  --bp-xs: 480px;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+}

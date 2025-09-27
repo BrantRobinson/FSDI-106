@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex: 1;
+}
+
+footer {
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#list {
+    flex: 2;
+    background-color: var(--color-gray-100);
+    padding: 1rem;
+}
+
+#form {
+    flex: 1;
+    background-color: var(--color-gray-700);
+    padding: 1rem;
+    color: var(--text-color-light);
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.task-row {
+    display: flex;
+    border: 1px solid var(--color-gray-700);
+    border-radius: 10px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.task-color {
+    width: 12px;
+    border-radius: 10px 0 0 10px;
+}
+
+.task-main {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 0 1rem;
+    width: 100%;
+    align-items: center;
+}
+
+.task-title-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 3;
+}
+
+.task-status {
+    flex:1;
+}
+
+.task-right-content {
+    flex:1;
+}
+
+.color-picker {
+    width: 40px;
+    padding: 0;
+}
+
+.task-title-description h4, .task-title-description p {
+    margin: 0;
+}
