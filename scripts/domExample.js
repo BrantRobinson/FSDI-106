@@ -1,8 +1,18 @@
+const paragraph = document.getElementById("demo");
+const button = document.getElementById("myBtn");
 const resultDiv = document.getElementById("result");
 
-console.log ("");
+console.log ("paragraph 1", paragraph);
+console.log ("button 1", button);
 
+// change the text of the paragraph
 
+button.addEventListener("click", function(){
+    resultDiv.innerText = "Button was clicked!";
+    resultDiv.style.color = "blue";
+    resultDiv.style.fontWeight = "bold";
+    paragraph.innerText = "This is the new message";
+});
 
 
 function hello() {
