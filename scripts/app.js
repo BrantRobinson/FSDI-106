@@ -39,17 +39,22 @@ function loadTasks() {
         success: function(res){
             console.log(res);
 
+            $("#myTasks, #otherTasks").empty();
+
             res.forEach(task => {
-                // if (task.name === "Brant") {
-                    displayTask(task);
-                // }
-    });
+                if (task.name === "Brant") {
+                    displayTask(task, "#myTasks");
+                } else {
+                    displayTask(task, "#otherTasks");
+                }
+            });
         },
         error: function(err) {
             console.log(err);
         }
     });
 }
+
 
 function addTask() {
     const title = $("#title").val();
@@ -75,7 +80,7 @@ function addTask() {
         contentType: "application/json",
         success: function(res){
             console.log(res);
-            $(".tasks").empty();
+            $("#myTasks, #otherTasks").empty();
             loadTasks();
         },
         error: function(err) {
@@ -97,7 +102,7 @@ $("#btnSave").click(function(e) {
     addTask();
 });
 
-function displayTask(newTask) {
+function displayTask(newTask, containerSelector=".tasks") {
     let shortDescription = newTask.description;
     if (shortDescription.length > 100) {
         shortDescription = shortDescription.substring(0, 100) + "...";
@@ -105,27 +110,24 @@ function displayTask(newTask) {
 
     const render = `
     <div class="task-row">
-        <div class="task-color" style="background-color: ${newTask.color};">
-        </div>
+        <div class="task-color" style="background-color: ${newTask.color};"></div>
         <div class="task-main">
             <div class="task-title-description">
                 <h4>${newTask.title}</h4>
                 <p>${shortDescription}</p>
             </div>
-            <div class="task-status">
-                    ${newTask.status}
-                </div>
+            <div class="task-status">${newTask.status}</div>
             <div class="task-right-content">
-                <div class="task-date">
-                    ${newTask.date || newTask.startDate || ""}
-                </div>
-                <div class="task-budget">
-                    $${newTask.budget}
-                </div>
+                <div class="task-date">${newTask.date || newTask.startDate || ""}</div>
+                <div class="task-budget">$${newTask.budget}</div>
+            </div>
+            <div class="task-delete">
+                <i class="fa-solid fa-trash delete-task" data-id="${newTask.id}"></i>
             </div>
         </div>
     </div>`;
-    $(".tasks").append(render);
+
+    $(containerSelector).append(render);
 }
 
 window.onload = init;
@@ -144,6 +146,29 @@ $("#showHideFormBtn").click(function(){
         btn.addClass("active");
     }
 });
+
+$(document).on("click", ".delete-task", function() {
+    const taskId = $(this).data("id");
+
+    const confirmed = confirm("Are you sure you want to delete this task?");
+    if (!confirmed) {
+        return;
+    }
+
+    $.ajax({
+        type: "delete",
+        url: `${API}/${taskId}`,
+        success: function() {
+            console.log("Task deleted:", taskId);
+            $("#myTasks, #otherTasks").empty();
+            loadTasks();        
+        },
+        error: function(err) {
+            console.log("Error deleting task:", err);
+        }
+    });
+});
+
 
 
 

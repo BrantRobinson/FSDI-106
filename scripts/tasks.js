@@ -6,7 +6,7 @@ class Task {
         this.date = date;
         this.status = status;
         this.budget = budget;
-        this.name = "Brant";
+        this.name = "NBrant";
     }
 }
 

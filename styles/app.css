@@ -62,11 +62,13 @@ footer {
     color: var(--text-color-light);
 }
 
-.tasks {
+.tasks, #myTasks, #otherTasks {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
+
 
 .task-row {
     display: flex;
