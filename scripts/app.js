@@ -13,50 +13,84 @@ function test() {
     })
 }
 
-let tasks = loadTasks();
 
 function init() {
     console.log("init");
 
-    tasks.forEach(task => {
-        displayTask(task);
-    });
+    let tasks = loadTasks();
+
+   
 }
 
+// function loadTasks() {
+//   const stored = localStorage.getItem("tasks");
+//   if (stored) {
+//     console.log(JSON.parse(stored));
+//     return JSON.parse(stored);
+//   }
+//   return [];
+// }
+
 function loadTasks() {
-  const stored = localStorage.getItem("tasks");
-  if (stored) {
-    console.log(JSON.parse(stored));
-    return JSON.parse(stored);
-  }
-  return [];
+    $.ajax({
+        type: "get",
+        url: API,
+        dataType: "json",
+        success: function(res){
+            console.log(res);
+
+            res.forEach(task => {
+                // if (task.name === "Brant") {
+                    displayTask(task);
+                // }
+    });
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
 }
 
 function addTask() {
     const title = $("#title").val();
     const description = $("#description").val();
     const color = $("#color").val();
-    const startDate = $("#startDate").val();
+    const date = $("#date").val();
     const status = $("#status").val();
     const budget = $("#budget").val();
 
-    const newTask = new Task(title, description, color, startDate, status, budget);
+    const newTask = new Task(title, description, color, date, status, budget);
 
-    tasks.push(newTask);
-    displayTask(newTask);
+    // displayTask(newTask);
+
 
     $("#form input, #form textarea, #form select").val("");
     $("#color").val("#8000FF");
 
-    console.log(tasks);
 
-    saveTasksToLocalStorage();
+    $.ajax({
+        type: "post",
+        url: API,
+        data: JSON.stringify(newTask),
+        contentType: "application/json",
+        success: function(res){
+            console.log(res);
+            $(".tasks").empty();
+            loadTasks();
+        },
+        error: function(err) {
+            console.log(err);
+            alert("Something went wrong");
+        }
+    });
+
+    // saveTasksToLocalStorage();
 }
 
-function saveTasksToLocalStorage() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  console.log("Tasks saved to localStorage");
-}
+// function saveTasksToLocalStorage() {
+//   localStorage.setItem("tasks", JSON.stringify(tasks));
+//   console.log("Tasks saved to localStorage");
+// }
 
 $("#btnSave").click(function(e) {
     e.preventDefault();
@@ -83,7 +117,7 @@ function displayTask(newTask) {
                 </div>
             <div class="task-right-content">
                 <div class="task-date">
-                    ${newTask.startDate}
+                    ${newTask.date || newTask.startDate || ""}
                 </div>
                 <div class="task-budget">
                     $${newTask.budget}
@@ -97,9 +131,19 @@ function displayTask(newTask) {
 window.onload = init;
 
 
+$("#showHideFormBtn").click(function(){
+    $("#form").toggle();
 
+    const btn = $("#showHideFormBtn");
 
-
+    if ($("#form").is(":visible")) {
+        btn.html('<i class="fa-solid fa-eye-slash"></i> Hide Form');
+        btn.removeClass("active"); 
+    } else {
+        btn.html('<i class="fa-solid fa-eye"></i> Show Form');
+        btn.addClass("active");
+    }
+});
 
 
 
